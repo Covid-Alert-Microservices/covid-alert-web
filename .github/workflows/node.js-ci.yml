@@ -1,0 +1,69 @@
+name: Covid Alert Web CI
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16.x]
+
+    steps:
+    - name: Check out project
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build production website
+      run: npm run build
+
+    - name: Upload artifact
+      if: matrix.os == 'ubuntu-latest' && matrix.node == '16.x'
+      uses: actions/upload-artifact@v2
+      with:
+        name: website
+        path: |
+          ./static.json
+          ./.buildpacks
+          ./build/
+        retention-days: 1
+
+  deploy:
+    if: github.event_name == 'push' && success()
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: website
+          path: ~/website
+      
+      - name: Setup SSH key and deploy to Dokku
+        env:
+          SSH_KEY: ${{ secrets.DOKKU_SSH_KEY }}
+        run: |
+          which ssh-agent || (apt-get update -y && apt-get install openssh-client -y)
+          eval $(ssh-agent -s)
+          echo "$SSH_KEY" | tr -d '\r' | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan "vps.florent.best" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          cd ${{ steps.download.outputs.download-path }}
+          tar -c . | ssh dokku@vps.florent.best tar:in covid

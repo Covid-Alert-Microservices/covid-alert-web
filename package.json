@@ -2,6 +2,9 @@
   "name": "covid-alert-web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "yarn": "^1.22"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.4",

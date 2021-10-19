@@ -29,6 +29,8 @@ jobs:
 
     - name: Build production website
       run: npm run build
+      env:
+        REACT_APP_KEYCLOAK_URL: ${{ secrets.KEYCLOAK_URL }}/auth
 
     - name: Upload artifact
       if: matrix.os == 'ubuntu-latest' && matrix.node == '16.x'

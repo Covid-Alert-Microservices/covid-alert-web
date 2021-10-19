@@ -1,4 +1,4 @@
-# Covid Alert Web
+# Covid Alert Web [![Covid Alert Web CI](https://github.com/Covid-Alert-Microservices/covid-alert-web/actions/workflows/node.js-ci.yml/badge.svg)](https://github.com/Covid-Alert-Microservices/covid-alert-web/actions/workflows/node.js-ci.yml)
 
 This is the frontend of the Covid Alert web application
 

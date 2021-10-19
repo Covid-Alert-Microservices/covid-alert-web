@@ -5,6 +5,12 @@
     "headers": {
         "/**": {
             "Cache-Control": "public, max-age=86400"
+        },
+        "/": {
+            "Cache-Control": "no-cache, no-store"
+        },
+        "/index.html": {
+            "Cache-Control": "no-cache, no-store"
         }
     }
 }

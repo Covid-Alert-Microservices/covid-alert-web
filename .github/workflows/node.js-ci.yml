@@ -1,10 +1,6 @@
 name: Covid Alert Web CI
 
-on:
-  push:
-    branches: master
-  pull_request:
-    branches: master
+on: [push, pull_request]
 
 jobs:
   build:
@@ -44,7 +40,7 @@ jobs:
         retention-days: 1
 
   deploy:
-    if: github.event_name == 'push' && success()
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && success()
     needs: build
     runs-on: ubuntu-latest
 

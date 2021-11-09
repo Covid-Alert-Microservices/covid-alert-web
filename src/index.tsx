@@ -43,9 +43,7 @@ ReactDOM.render(
     <Provider store={store}>
       <TokensSyncer>
         <ThemeProvider theme={theme}>
-          <DefaultLayout>
             <Router />
-          </DefaultLayout>
         </ThemeProvider>
       </TokensSyncer>
     </Provider>

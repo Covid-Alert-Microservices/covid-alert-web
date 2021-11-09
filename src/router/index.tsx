@@ -1,6 +1,7 @@
 import { useKeycloak } from '@react-keycloak/web';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import DefaultLayout from '../layout';
 import ProtectedRoutes from './protected.routes';
 import PublicRoutes from './public.routes';
 
@@ -12,7 +13,9 @@ const Routes = () => {
 
 const Router = () => (
     <BrowserRouter>
-        <Routes />
+        <DefaultLayout>
+            <Routes />
+        </DefaultLayout>
     </BrowserRouter>
 )
 

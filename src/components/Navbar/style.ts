@@ -6,7 +6,8 @@ export const NavbarWrapper = styled.nav({
     position: 'sticky',
     top: 0,
     width: '100%',
-    background: theme.palette.background.default
+    background: theme.palette.background.default,
+    height: '62px'
 })
 
 export const NavbarIcon = styled(IconButton)({

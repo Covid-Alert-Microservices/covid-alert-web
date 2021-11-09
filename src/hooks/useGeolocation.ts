@@ -7,7 +7,7 @@ const useGeolocation = (options : PositionOptions ) => {
   const [position, setPosition] = useState<GeolocationPosition | null>(null);
 
   useEffect(() => {
-    navigator.geolocation && navigator.geolocation.getCurrentPosition(setPosition, (e) => {console.log(e)}, options)
+    navigator.geolocation && navigator.geolocation.getCurrentPosition(setPosition, (e) => {console.warn(e)}, options)
     return () => {
       setPosition(null)
     }

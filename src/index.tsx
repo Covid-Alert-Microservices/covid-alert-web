@@ -6,7 +6,6 @@ import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { keycloak } from "./keycloack";
-import DefaultLayout from "./layout";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
 import { store } from "./store";

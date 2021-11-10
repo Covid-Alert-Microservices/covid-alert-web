@@ -27,6 +27,7 @@ jobs:
       run: npm run build
       env:
         REACT_APP_KEYCLOAK_URL: ${{ secrets.KEYCLOAK_URL }}/auth
+        REACT_APP_NEWS_MICROSERVICE: ${{ secrets.NEWS_PROVIDER_URL }}
 
     - name: Upload artifact
       if: matrix.os == 'ubuntu-latest' && matrix.node == '16.x'

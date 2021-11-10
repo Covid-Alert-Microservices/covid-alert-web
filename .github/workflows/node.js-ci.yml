@@ -64,4 +64,4 @@ jobs:
           ssh-keyscan "vps.florent.best" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           cd ${{ steps.download.outputs.download-path }}
-          tar -c . | ssh dokku@vps.florent.best tar:in covid
+          tar -c . | ssh dokku@vps.florent.best git:from-archive covid --

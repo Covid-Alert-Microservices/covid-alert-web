@@ -1,10 +1,18 @@
 import { Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { ArticleData } from "../../store/api/news";
 
+const PaddedPaper = styled(Paper)(
+  ({ theme }) => `
+  padding: ${theme.spacing(1)};
+  margin-bottom: ${theme.spacing(2)};
+`
+);
+
 const Article = (props: { article: ArticleData }) => {
-  const { title, date, link, summary } = props.article;
+  const { title, date, summary } = props.article;
   return (
-    <Paper>
+    <PaddedPaper>
       <Grid container>
         <Grid item>
           <Grid container item justifyContent="space-between">
@@ -29,7 +37,7 @@ const Article = (props: { article: ArticleData }) => {
           </Typography>
         </Grid>
       </Grid>
-    </Paper>
+    </PaddedPaper>
   );
 };
 

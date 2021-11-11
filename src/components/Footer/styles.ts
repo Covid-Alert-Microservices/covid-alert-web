@@ -6,6 +6,7 @@ export const FooterWrapper = styled.div({
     overflowX: 'hidden',
     backgroundColor: theme.palette.grey[100],
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     padding: theme.spacing(3)

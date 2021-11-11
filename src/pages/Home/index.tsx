@@ -1,10 +1,13 @@
+import { Typography } from "@mui/material";
+import React from "react";
+
 const Home = () => {
   return (
     <>
-      <h1>Covid Geo Tracker</h1>
-      <p>home page</p>
+      <Typography component="h1" variant="h2" mt={4}>Covid Tracker</Typography>
+      <Typography component="p" variant="subtitle1">Some description</Typography>
     </>
   );
 };
 
-export default Home;
+export default React.memo(Home);

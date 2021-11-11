@@ -1,3 +1,4 @@
+import React from "react";
 import { newsApi } from "../../store/api/news";
 import Article from "./article";
 
@@ -17,4 +18,4 @@ const ArticlesList = () => {
   );
 };
 
-export default ArticlesList;
+export default React.memo(ArticlesList);

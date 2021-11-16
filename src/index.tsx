@@ -5,6 +5,7 @@ import { ReactKeycloakProvider } from "@react-keycloak/web";
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
 import { Provider, useDispatch } from "react-redux";
+import Geolocation from './components/Geolocation';
 import { keycloak } from "./keycloack";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
@@ -49,6 +50,7 @@ const GraphsFetching = () => {
 
 ReactDOM.render(
   <React.StrictMode>
+    <Geolocation />
     <CssBaseline />
     <Provider store={store}>
       <GraphsFetching />

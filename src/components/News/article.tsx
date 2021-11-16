@@ -1,5 +1,6 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import React from "react";
 import { ArticleData } from "../../store/api/news";
 
 const PaddedPaper = styled(Paper)(
@@ -41,4 +42,4 @@ const Article = (props: { article: ArticleData }) => {
   );
 };
 
-export default Article;
+export default React.memo(Article);

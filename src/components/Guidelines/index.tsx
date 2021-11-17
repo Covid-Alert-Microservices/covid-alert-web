@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Card, CardContent, Grid } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
 import Svg1 from '../../svg/1.svg';
 import Svg2 from '../../svg/2.svg';
@@ -23,7 +23,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg2} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }}>Security and privacy is our priority</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>Security and privacy is our priority</Typography>
                     </CardContent>
                 </Card>
             </Grid>
@@ -31,7 +31,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg3} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }}>Make sure you share your position</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>Make sure you share your position</Typography>
                     </CardContent>
                 </Card>
             </Grid>
@@ -39,7 +39,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg1} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }}>Follows you wherever you go</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>Follows you wherever you go</Typography>
                     </CardContent>
                 </Card>
             </Grid>
@@ -47,7 +47,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg5} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }}>Keep you and your friends safe</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>Keep you and your friends safe</Typography>
                     </CardContent>
                 </Card>
             </Grid>
@@ -55,7 +55,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg4} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }}>Stay updated with the latest news</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>Stay updated with the latest news</Typography>
                     </CardContent>
                 </Card>
             </Grid>
@@ -63,7 +63,7 @@ const Guidelines = () => {
                 <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <StyledImg src={Svg6} />
-                        <Button variant="outlined" sx={{ marginTop: 2 }} >View and analyse many relevant charts</Button>
+                        <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }} gutterBottom>View and analyse many relevant charts</Typography>
                     </CardContent>
                 </Card>
             </Grid>

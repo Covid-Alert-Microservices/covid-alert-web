@@ -1,44 +1,28 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
 import { ArticleData } from "../../store/api/news";
 
-const PaddedPaper = styled(Paper)(
-  ({ theme }) => `
-  padding: ${theme.spacing(1)};
-  margin-bottom: ${theme.spacing(2)};
-`
-);
-
 const Article = (props: { article: ArticleData }) => {
-  const { title, date, summary } = props.article;
+  const { title, date, summary, link } = props.article;
   return (
-    <PaddedPaper>
-      <Grid container>
-        <Grid item>
-          <Grid container item justifyContent="space-between">
-            <Grid item>
-              <Typography
-                gutterBottom
-                variant="subtitle1"
-                component="div"
-                fontWeight="bold"
-              >
-                {title}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1" component="div">
-                <time dateTime={date}>{date}</time>
-              </Typography>
-            </Grid>
-          </Grid>
-          <Typography variant="body1" component="p">
+    <Grid item xs={12} md={6}>
+      <Card variant="outlined" sx={{ height: '100%' }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {date}
+          </Typography>
+          <Typography variant="h5" component="div">
+            {title}
+          </Typography>
+          <Typography variant="body2">
             {summary}
           </Typography>
-        </Grid>
-      </Grid>
-    </PaddedPaper>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={() => { window.open(link, "_blank") }}>Learn More</Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 

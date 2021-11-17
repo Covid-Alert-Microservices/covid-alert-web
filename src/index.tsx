@@ -4,17 +4,16 @@ import { AuthClientTokens } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import Geolocation from './components/Geolocation';
 import { keycloak } from "./keycloack";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
 import { store } from "./store";
+import { chartsApi } from "./store/api/charts";
 import { tokensRefreshed } from "./store/api/credentials";
-import { fetchDeconfinementData, fetchRegionData, fetchVaccineData } from "./store/charts";
 import { useAppDispatch } from "./store/hooks";
 import theme from "./theme";
-
 
 const TokensSyncer = (props: React.PropsWithChildren<{}>): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -39,14 +38,12 @@ const TokensSyncer = (props: React.PropsWithChildren<{}>): JSX.Element => {
 };
 
 const GraphsFetching = () => {
-  const dispatch = useDispatch();
-  dispatch(fetchRegionData());
-  dispatch(fetchDeconfinementData());
-  dispatch(fetchVaccineData());
+  chartsApi.useGetDeconfinementDataQuery(null);
+  chartsApi.useGetRegionsDataQuery(null);
+  chartsApi.useGetVaccineDataQuery(null);
+
   return null;
-}
-
-
+};
 
 ReactDOM.render(
   <React.StrictMode>

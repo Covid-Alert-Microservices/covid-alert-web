@@ -9,7 +9,7 @@ const Article = (props: { article: ArticleData }) => {
       <Card variant="outlined" sx={{ height: '100%' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {date}
+            {date.slice(0, 10)}
           </Typography>
           <Typography variant="h5" component="div">
             {title}
@@ -19,7 +19,7 @@ const Article = (props: { article: ArticleData }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => { window.open(link, "_blank") }}>Learn More</Button>
+          <Button size="small" onClick={() => { window.open(link, "_blank") }}>Voir plus</Button>
         </CardActions>
       </Card>
     </Grid>

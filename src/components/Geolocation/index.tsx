@@ -1,19 +1,29 @@
+import React from "react";
+import { useEffect } from "react";
 
 const MILLIS_GEO_TRACKING = 1000 * 60 * 5;
 
-const options = { enableHighAccuracy: true, maximumAge: MILLIS_GEO_TRACKING }
+const options = { enableHighAccuracy: true, maximumAge: MILLIS_GEO_TRACKING };
 
-const handlePosition = (e: GeolocationPosition) => { console.log(e) }
+const handlePosition = (e: GeolocationPosition) => {
+  console.log(e.coords, e.timestamp);
+};
 
-const handleError = (e: GeolocationPositionError) => { console.warn(e) }
+const handleError = (e: GeolocationPositionError) => {
+  console.warn(e);
+};
 
 const Geolocation = () => {
+  useEffect(() => {
+    const watchId = navigator.geolocation.watchPosition(
+      handlePosition,
+      handleError,
+      options
+    );
+    return () => navigator.geolocation.clearWatch(watchId);
+  }, []);
 
-    const getGeolocation = () => navigator.geolocation.getCurrentPosition(handlePosition, handleError, options) // Return 2 promise-position
+  return null;
+};
 
-    if (navigator.geolocation) setInterval(getGeolocation, 5000)
-
-    return <></>
-}
-
-export default Geolocation;
+export default React.memo(Geolocation);

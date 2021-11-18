@@ -9,5 +9,6 @@ export const FooterWrapper = styled.div({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(3),
 })

@@ -1,4 +1,4 @@
-import React from "react";
+import { Grid } from "@mui/material";
 import { newsApi } from "../../store/api/news";
 import Article from "./article";
 
@@ -10,12 +10,12 @@ const ArticlesList = () => {
   }
 
   return (
-    <div>
+    <Grid container spacing={2} sx={{ marginTop: 3, marginBottom: 3 }}>
       {articles.map((article) => (
         <Article key={article.title} article={article} />
       ))}
-    </div>
+    </Grid>
   );
 };
 
-export default React.memo(ArticlesList);
+export default ArticlesList;

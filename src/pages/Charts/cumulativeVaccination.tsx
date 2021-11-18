@@ -42,7 +42,7 @@ const CumulativeVaccinationChart = () => {
       series={[
         {
           name: "complete vaccination",
-          data: vaccines.n_complet.values,
+          data: vaccines.n_cum_complet.values,
         },
         {
           name: "recall vaccination",

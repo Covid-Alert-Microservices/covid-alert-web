@@ -84,7 +84,7 @@ const AuthenticatedMenu = React.memo(() => {
                 </ListItemIcon>
                 Paramètres
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={(e) => keycloak.logout()}>
                 <ListItemIcon>
                     <LogoutOutlined fontSize="small" />
                 </ListItemIcon>

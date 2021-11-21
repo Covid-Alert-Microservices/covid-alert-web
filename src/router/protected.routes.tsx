@@ -1,7 +1,7 @@
-import { Home } from "@mui/icons-material";
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Charts from "../pages/Charts";
+import Home from "../pages/Home";
 import News from "../pages/News";
 
 const ProtectedRoutes = () => (

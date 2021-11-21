@@ -1,5 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { isPositionEnabled } from "../../store/api/position";
 
 const MILLIS_GEO_TRACKING = 1000 * 60 * 5;
 
@@ -14,14 +15,16 @@ const handleError = (e: GeolocationPositionError) => {
 };
 
 const Geolocation = () => {
+  const active = useSelector(isPositionEnabled);
   useEffect(() => {
+    if (!active) return;
     const watchId = navigator.geolocation.watchPosition(
       handlePosition,
       handleError,
       options
     );
     return () => navigator.geolocation.clearWatch(watchId);
-  }, []);
+  }, [active]);
 
   return null;
 };

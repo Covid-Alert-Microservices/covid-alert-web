@@ -1,8 +1,11 @@
-import { LogoutOutlined, PersonOffOutlined, SettingsOutlined, VpnKeyOutlined } from "@mui/icons-material";
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { BiotechOutlined, HealthAndSafetyOutlined, LogoutOutlined, PersonOffOutlined, VpnKeyOutlined } from "@mui/icons-material";
+import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Skeleton, Tooltip } from "@mui/material";
 import { useKeycloak } from "@react-keycloak/web";
 import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { INavbarAccountMenu } from "../../../hooks/useNavbarAccountMenu";
+import { selectUser, setUser } from "../../../store/api/user";
 import theme from "../../../theme";
 import { stringAvatar } from "../../../utils/muiStringcolors";
 
@@ -57,14 +60,14 @@ const UnauthenticatedMenu = React.memo(() => {
             <MenuItem>
                 <Avatar sx={{ bgcolor: theme.palette.error.main }}>
                     <PersonOffOutlined />
-                </Avatar> Anonyme
+                </Avatar> Not protected
             </MenuItem>
             <Divider />
             <MenuItem onClick={login}>
                 <ListItemIcon >
                     <VpnKeyOutlined fontSize="small" />
                 </ListItemIcon>
-                Connexion
+                Log in
             </MenuItem>
         </>
     )
@@ -72,26 +75,76 @@ const UnauthenticatedMenu = React.memo(() => {
 
 const AuthenticatedMenu = React.memo(() => {
     const { keycloak } = useKeycloak();
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+    const history = useHistory();
+
+    if (!('id' in user)) {
+        keycloak.loadUserProfile().then((profile) => { dispatch(setUser(profile)) })
+        return SkeletonAuthenticatedMenu();
+    }
+
     return (
         <>
-            <MenuItem>
-                <Avatar {...stringAvatar(keycloak.profile?.username || 'random')} /> {keycloak.profile?.username}
-            </MenuItem>
+            <Tooltip title="Account">
+                <MenuItem onClick={(e) => history.push('/account')}>
+                    <Avatar {...stringAvatar(user?.username || 'random')} /> {user?.username || 'random'}
+                </MenuItem>
+            </Tooltip>
             <Divider />
-            <MenuItem>
+            <MenuItem onClick={(e) => history.push('/vaccines')}>
                 <ListItemIcon>
-                    <SettingsOutlined fontSize="small" />
+                    <HealthAndSafetyOutlined fontSize="small" />
                 </ListItemIcon>
-                Paramètres
+                Vaccines
             </MenuItem>
+            <MenuItem onClick={(e) => history.push('/testing')}>
+                <ListItemIcon>
+                    <BiotechOutlined fontSize="small" />
+                </ListItemIcon>
+                Testing
+            </MenuItem>
+            <Divider light />
             <MenuItem onClick={(e) => keycloak.logout()}>
                 <ListItemIcon>
                     <LogoutOutlined fontSize="small" />
                 </ListItemIcon>
-                Déconnexion
+                Log out
             </MenuItem>
         </>
     )
 })
+
+const SkeletonAuthenticatedMenu = () => (
+    <>
+        <MenuItem>
+            <Skeleton variant="circular">
+                <Avatar />
+            </Skeleton>
+            <Skeleton variant="text" width={60} height={30} sx={{ ml: 1 }} />
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+            <ListItemIcon>
+                <Skeleton variant="circular" width={20} height={20} />
+            </ListItemIcon>
+            <Skeleton variant="text" width={60} />
+        </MenuItem>
+        <MenuItem>
+            <ListItemIcon>
+                <Skeleton variant="circular" width={20} height={20} />
+            </ListItemIcon>
+            <Skeleton variant="text" width={60} />
+        </MenuItem>
+        <Divider light />
+        <MenuItem>
+            <ListItemIcon>
+                <Skeleton variant="circular" width={20} height={20} />
+            </ListItemIcon>
+            <Skeleton variant="text" width={60} />
+        </MenuItem>
+    </>
+)
 
 export default React.memo(AccountMenu);

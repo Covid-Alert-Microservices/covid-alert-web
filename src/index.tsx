@@ -45,11 +45,12 @@ const GraphsFetching = () => {
   return null;
 };
 
+
 ReactDOM.render(
   <React.StrictMode>
-    <Geolocation />
     <CssBaseline />
     <Provider store={store}>
+      <Geolocation />
       <GraphsFetching />
       <TokensSyncer>
         <ThemeProvider theme={theme}>

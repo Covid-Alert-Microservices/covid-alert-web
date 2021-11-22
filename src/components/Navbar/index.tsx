@@ -28,8 +28,8 @@ const Navbar = () => {
                                 <GitHub fontSize='small' />
                             </NavbarIcon>
                         </Tooltip>
-                        <Tooltip title="Covid-Certified">
-                            <NavbarIcon color="primary">
+                        <Tooltip title="Open documentation">
+                            <NavbarIcon color="primary" onClick={() => { window.open("https://covid-alert-microservices.github.io/specs/", "_blank") }}>
                                 <VerifiedUserOutlined fontSize='small' />
                             </NavbarIcon>
                         </Tooltip>

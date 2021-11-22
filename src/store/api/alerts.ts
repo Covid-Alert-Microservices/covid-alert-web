@@ -22,7 +22,7 @@ export interface IAlert {
 export const alertsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAlerts: builder.query<IAlert[], null>({
-      query: () => serviceUrl("/alerts"),
+      query: () => serviceUrl("/api"),
       transformResponse: (data: AlertData[]) : IAlert[] => data.map(({id, message}) => ({id: id.toString(), content: message, severity: 'error', canClose: false } as IAlert)),
     }),
   }),

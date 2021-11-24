@@ -7,22 +7,23 @@ const MILLIS_GEO_TRACKING = 1000 * 60 * 5;
 
 const options = { enableHighAccuracy: true, maximumAge: MILLIS_GEO_TRACKING };
 
-const handlePosition = (e: GeolocationPosition) =>
-  geolocationApi.endpoints.sendPosition.initiate({ timestamp: e.timestamp, latitude: e.coords.latitude, longitude: e.coords.longitude })
-
 const handleError = (e: GeolocationPositionError) => console.warn(e);
 
 const Geolocation = () => {
   const active = useSelector(isPositionEnabled);
+  const [sendPosition] = geolocationApi.useSendPositionMutation()
+
+
   useEffect(() => {
     if (!active) return;
+    const handlePosition = (e: GeolocationPosition) => sendPosition({ timestamp: e.timestamp, latitude: e.coords.latitude, longitude: e.coords.longitude });
     const watchId = navigator.geolocation.watchPosition(
       handlePosition,
       handleError,
       options
     );
     return () => navigator.geolocation.clearWatch(watchId);
-  }, [active]);
+  }, [active, sendPosition]);
 
   return null;
 };

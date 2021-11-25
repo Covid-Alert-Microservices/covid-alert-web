@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { geolocationApi } from "../../store/api/geolocation";
 import { isPositionEnabled } from "../../store/api/position";
 
-const MILLIS_GEO_TRACKING = 1000 * 60 * 5;
+const MILLIS_GEO_TRACKING = 1000 * 30;
 
 const options = { enableHighAccuracy: true, maximumAge: MILLIS_GEO_TRACKING };
 
@@ -16,7 +16,7 @@ const Geolocation = () => {
 
   useEffect(() => {
     if (!active) return;
-    const handlePosition = (e: GeolocationPosition) => sendPosition({ timestamp: e.timestamp, latitude: e.coords.latitude, longitude: e.coords.longitude });
+    const handlePosition = (e: GeolocationPosition) => { sendPosition({ timestamp: e.timestamp, latitude: e.coords.latitude, longitude: e.coords.longitude }); window.alert("Position sent"); }
     const watchId = navigator.geolocation.watchPosition(
       handlePosition,
       handleError,

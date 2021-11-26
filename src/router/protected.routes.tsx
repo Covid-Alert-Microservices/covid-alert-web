@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Alerts from "../components/Alerts";
+import Geolocation from "../components/Geolocation";
 import Account from "../pages/Account";
 import Charts from "../pages/Charts";
 import Home from "../pages/Home";
@@ -10,6 +11,7 @@ import Vaccines from "../pages/Vaccines";
 
 const ProtectedRoutes = () => (
     <>
+        <Geolocation />
         <Alerts />
         <Switch>
             <Route path="/" exact component={Home} />

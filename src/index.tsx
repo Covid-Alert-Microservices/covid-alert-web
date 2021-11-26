@@ -5,7 +5,6 @@ import { ReactKeycloakProvider } from "@react-keycloak/web";
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import Geolocation from './components/Geolocation';
 import { keycloak } from "./keycloack";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
@@ -50,7 +49,6 @@ ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <Provider store={store}>
-      <Geolocation />
       <GraphsFetching />
       <TokensSyncer>
         <ThemeProvider theme={theme}>

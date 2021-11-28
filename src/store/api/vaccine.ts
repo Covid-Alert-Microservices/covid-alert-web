@@ -22,12 +22,14 @@ export const vaccineApi = api.injectEndpoints({
       query: () => ({
         url: serviceUrl("/api/vaccine"),
       }),
+      providesTags: ["Vaccine"],
     }),
     deleteVaccine: builder.mutation<null, null>({
       query: () => ({
         url: serviceUrl("/api/vaccine"),
         method: "DELETE",
       }),
+      invalidatesTags: ["Vaccine"],
     }),
     createVaccine: builder.mutation<Vaccine, Vaccine>({
       query: (vaccine) => ({
@@ -35,6 +37,7 @@ export const vaccineApi = api.injectEndpoints({
         method: "POST",
         body: vaccine,
       }),
+      invalidatesTags: ["Vaccine"],
     }),
     updateVaccine: builder.mutation<Vaccine, Vaccine>({
       query: (vaccine) => ({
@@ -42,6 +45,7 @@ export const vaccineApi = api.injectEndpoints({
         method: "PUT",
         body: vaccine,
       }),
+      invalidatesTags: ["Vaccine"],
     }),
   }),
 });

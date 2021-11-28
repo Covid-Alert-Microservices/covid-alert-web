@@ -1,5 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from "@mui/material";
 import React from "react";
 import { covidTestApi } from "../../store/api/covid-tests";
 import CovidTest from "./covid-test";
@@ -60,7 +59,7 @@ const CovidTestsList = () => {
             Please enter your test informations.
           </DialogContentText>
           <Box component="form" sx={{ margin: 3, '& .MuiTextField-root': { m: 1, width: '25ch' } }}>
-            <TextField disabled id="disease" label="Disease" defaultValue="COVID-19" onChange={onFieldUpdate} value={formState.disease} />
+            <TextField disabled id="disease" label="Disease" onChange={onFieldUpdate} value={formState.disease} />
             <TextField required id="testType" label="Test Type" onChange={onFieldUpdate} value={formState.testType} />
             <TextField required id="testResult" label="Test Result" onChange={onFieldUpdate} value={formState.testResult} />
             <TextField required id="testDate" label="Test Date" type="date" onChange={onFieldUpdate} value={formState.testDate} />

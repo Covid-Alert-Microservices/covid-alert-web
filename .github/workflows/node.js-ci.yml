@@ -30,6 +30,8 @@ jobs:
         REACT_APP_NEWS_MICROSERVICE: ${{ secrets.NEWS_PROVIDER_URL }}
         REACT_APP_ALERTS_MICROSERVICE: ${{ secrets.ALERTS_URL }}
         REACT_APP_COMPASS_MICROSERVICE: ${{ secrets.COMPASS_URL }}
+        REACT_APP_VACCINE_MICROSERVICE: ${{ secrets.VACCINES_URL }}
+        REACT_APP_COVIDTESTS_MICROSERVICE: ${{ secrets.TESTS_URL }}
 
     - name: Upload artifact
       if: matrix.os == 'ubuntu-latest' && matrix.node == '16.x'

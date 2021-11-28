@@ -36,20 +36,23 @@ export const covidTestApi = api.injectEndpoints({
       query: () => ({
         url: serviceUrl("/api/covid-tests"),
       }),
-      transformResponse: (data: CovidTestData[]) => data.sort(compareCovidTestByDateDesc)
+      transformResponse: (data: CovidTestData[]) => data.sort(compareCovidTestByDateDesc),
+      providesTags: ["CovidTests"],
     }),
     deleteCovidTest: builder.mutation<null, number>({
       query: (id) => ({
         url: serviceUrl("/api/covid-tests/" + id),
         method: "DELETE",
       }),
+      invalidatesTags: ["CovidTests"],
     }),
-    createCovidTest: builder.mutation<CovidTestData, CovidTestData>({
+    createCovidTest: builder.mutation<CovidTestData, Omit<CovidTestData, "id">>({
       query: (covidTest) => ({
         url: serviceUrl("/api/covid-tests"),
         method: "POST",
         body: covidTest,
       }),
+      invalidatesTags: ["CovidTests"],
     }),
     updateCovidTest: builder.mutation<CovidTestData, CovidTestData>({
       query: (covidTest) => ({
@@ -57,6 +60,7 @@ export const covidTestApi = api.injectEndpoints({
         method: "PUT",
         body: covidTest,
       }),
+      invalidatesTags: ["CovidTests"],
     }),
   }),
 });

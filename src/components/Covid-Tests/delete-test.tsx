@@ -40,4 +40,4 @@ const DeleteTest = ({ open, onClose, test }: IProps) => {
 }
 
 
-export default React.memo(DeleteTest);
+export default DeleteTest;

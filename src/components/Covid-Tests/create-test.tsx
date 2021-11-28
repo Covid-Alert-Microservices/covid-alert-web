@@ -63,4 +63,4 @@ const CreateTest = ({ open, onClose }: IProps) => {
 }
 
 
-export default React.memo(CreateTest);
+export default CreateTest;

@@ -29,7 +29,7 @@ const Footer = () => (
         <Link href="https://github.com/KevenDvorianoff" underline="none" target="_blank" rel="noreferrer">
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar alt="Keven Dvorianoff's avatar" src="https://avatars.githubusercontent.com/u/92625839?s=400&v=4" />
+                    <Avatar alt="Keven Dvorianoff's avatar" src="https://avatars.githubusercontent.com/u/55441939?s=400&v=4" />
                 </ListItemAvatar>
                 <ListItemText
                     primary="Keven Dvorianoff"

@@ -23,7 +23,15 @@ export const alertsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAlerts: builder.query<IAlert[], null>({
       query: () => serviceUrl("/api"),
-      transformResponse: (data: AlertData[]) : IAlert[] => data.map(({id, message}) => ({id: id.toString(), content: message, severity: 'error', canClose: false } as IAlert)),
+      transformResponse: (data: AlertData[]) : IAlert[] => data.map(({id, message}) => ({id: id.toString(), content: message, severity: 'error', canClose: true } as IAlert)),
+      providesTags: ["Alerts"]
+    }),
+    deleteAlert: builder.mutation<null, string>({
+      query: (id) => ({
+        url: serviceUrl("/api/" + id),
+        method: "DELETE",
+      }),
+      invalidatesTags: ['Alerts']
     }),
   }),
 });

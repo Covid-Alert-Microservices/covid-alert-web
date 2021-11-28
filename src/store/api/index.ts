@@ -15,5 +15,5 @@ const baseQuery = fetchBaseQuery({
 export const api = createApi({
   baseQuery,
   endpoints: () => ({}),
-  tagTypes: ["CovidTests", "Vaccine"],
+  tagTypes: ["CovidTests", "Vaccine", "Alerts"],
 });

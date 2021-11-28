@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
+import DebugGeolocation from "../../components/Account/DebugGeolocation";
 import AccountForm from "../../components/Account/Form";
 import { selectUser } from "../../store/api/user";
 
@@ -13,6 +14,7 @@ const Account = () => {
             <Typography component="p" variant="subtitle1">Thank you for trusting Covid Alert. To protect your loved ones think of activating the geolocation. You can disable this feature at any time.</Typography>
             <Typography sx={{ mt: 4 }} variant="button" display="block" gutterBottom>Application settings</Typography>
             <AccountForm />
+            <DebugGeolocation />
         </>
     )
 }

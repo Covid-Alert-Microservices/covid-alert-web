@@ -1,6 +1,6 @@
+import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from "@mui/material";
 import React from "react";
 import { vaccineApi } from "../../store/api/vaccine";
-import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from "@mui/material";
 
 const Vaccine = () => {
   const { data: vaccine } = vaccineApi.useGetVaccineQuery(null);
@@ -44,8 +44,8 @@ const Vaccine = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button variant='outlined' size='small' onClick={handleCloseCreateDialog}>Cancel</Button>
-            <Button variant='outlined' size='small' color='success' onClick={handleCloseCreateDialog}>Add</Button>
+            <Button size='small' color='error' onClick={handleCloseCreateDialog}>Cancel</Button>
+            <Button variant="outlined" size='small' onClick={handleCloseCreateDialog}>Add</Button>
           </DialogActions>
         </Dialog>
       </>
@@ -120,7 +120,7 @@ const Vaccine = () => {
         <CardActions>
           <Stack direction="row" spacing={2} sx={{ mx: 'auto' }}>
             <Button variant='outlined' size='small'>Edit</Button>
-            <Button variant='outlined' size='small' color='error' onClick={handleOpenDeleteAlert}>Delete</Button>
+            <Button size='small' color='error' onClick={handleOpenDeleteAlert}>Delete</Button>
           </Stack>
         </CardActions>
       </Card>
@@ -140,8 +140,8 @@ const Vaccine = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' size='small' onClick={handleCloseDeleteAlert}>Cancel</Button>
-          <Button variant='outlined' size='small' color='error' onClick={handleCloseDeleteAlert}>Confirm</Button>
+          <Button size='small' color='error' onClick={handleCloseDeleteAlert}>Cancel</Button>
+          <Button variant='outlined' size='small' onClick={handleCloseDeleteAlert}>Confirm</Button>
         </DialogActions>
       </Dialog>
     </>

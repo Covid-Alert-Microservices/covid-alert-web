@@ -40,8 +40,8 @@ const CovidTestsList = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' size='small' onClick={handleCloseCreateDialog}>Cancel</Button>
-          <Button variant='outlined' size='small' color='success' onClick={handleCloseCreateDialog}>Add</Button>
+          <Button size='small' color='error' onClick={handleCloseCreateDialog}>Cancel</Button>
+          <Button variant="outlined" size='small' onClick={handleCloseCreateDialog}>Add</Button>
         </DialogActions>
       </Dialog>
     </>

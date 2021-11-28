@@ -75,7 +75,7 @@ const CovidTest = (props: { covidTest: CovidTestData }) => {
           <CardActions>
             <Stack direction="row" spacing={2} sx={{ mx: 'auto' }}>
               <Button variant='outlined' size='small'>Edit</Button>
-              <Button variant='outlined' size='small' color='error' onClick={handleOpenDeleteAlert}>Delete</Button>
+              <Button size='small' color='error' onClick={handleOpenDeleteAlert}>Delete</Button>
             </Stack>
           </CardActions>
         </Card>
@@ -96,8 +96,8 @@ const CovidTest = (props: { covidTest: CovidTestData }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' size='small' onClick={handleCloseDeleteAlert}>Cancel</Button>
-          <Button variant='outlined' size='small' color='error' onClick={handleCloseDeleteAlert}>Confirm</Button>
+          <Button size='small' color='error' onClick={handleCloseDeleteAlert}>Cancel</Button>
+          <Button variant='outlined' size='small' onClick={handleCloseDeleteAlert}>Confirm</Button>
         </DialogActions>
       </Dialog>
     </>

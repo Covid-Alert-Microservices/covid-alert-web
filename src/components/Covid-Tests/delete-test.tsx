@@ -1,5 +1,5 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import React from "react";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar } from "@mui/material";
+import React, { useState } from "react";
 import { covidTestApi, CovidTestData } from "../../store/api/covid-tests";
 
 interface IProps {
@@ -11,31 +11,53 @@ interface IProps {
 const DeleteTest = ({ open, onClose, test }: IProps) => {
     const [deleteTest] = covidTestApi.useDeleteCovidTestMutation();
 
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
     const handleDeleteConfirm = () => {
-        deleteTest(test.id);
-        onClose(true);
+        deleteTest(test.id)
+            .then((res) => {
+                if ("error" in res) {
+                    console.log(res.error)
+                    setOpenSnackbar(true);
+                }
+                else {
+                    onClose(true);
+                }
+            })
     }
 
     return (
-        <Dialog
-            open={open}
-            onClose={onClose}
-            aria-labelledby="delete-alert-dialog-title"
-            aria-describedby="delete-alert-dialog-description"
-        >
-            <DialogTitle id="delete-alert-dialog-title">
-                Are you sure you want to delete this test ?
-            </DialogTitle>
-            <DialogContent>
-                <DialogContentText id="delete-alert-dialog-description">
-                    This action is irreversible.
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button color='error' onClick={onClose}>Cancel</Button>
-                <Button variant='outlined' onClick={handleDeleteConfirm}>Confirm</Button>
-            </DialogActions>
-        </Dialog>
+        <>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center'
+                }}
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={() => { setOpenSnackbar(false) }}
+                message="Sorry, something went wrong"
+            />
+            <Dialog
+                open={open}
+                onClose={onClose}
+                aria-labelledby="delete-alert-dialog-title"
+                aria-describedby="delete-alert-dialog-description"
+            >
+                <DialogTitle id="delete-alert-dialog-title">
+                    Are you sure you want to delete this test ?
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="delete-alert-dialog-description">
+                        This action is irreversible.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button size='large' sx={{ color: 'text.disabled' }} onClick={onClose}>Cancel</Button>
+                    <Button size='large' color='primary' variant="outlined" onClick={handleDeleteConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        </>
     )
 }
 

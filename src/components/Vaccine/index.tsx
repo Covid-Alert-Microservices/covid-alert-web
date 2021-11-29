@@ -132,8 +132,8 @@ const Vaccine = () => {
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button size='small' color='error' onClick={handleCloseCreateDialog}>Cancel</Button>
-            <Button variant="outlined" size='small' onClick={handleCreateConfirm}>Add</Button>
+            <Button size='large' sx={{ color: 'text.disabled' }} onClick={handleCloseCreateDialog}>Cancel</Button>
+            <Button size='large' color='primary' variant="outlined" onClick={handleCreateConfirm}>Create vaccine</Button>
           </DialogActions>
         </Dialog>
       </>
@@ -228,8 +228,8 @@ const Vaccine = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button size='small' color='error' onClick={handleCloseDeleteAlert}>Cancel</Button>
-          <Button variant='outlined' size='small' onClick={handleDeleteConfirm}>Confirm</Button>
+          <Button size='large' sx={{ color: 'text.disabled' }} onClick={handleCloseDeleteAlert}>Cancel</Button>
+          <Button size='large' color="primary" variant='outlined' onClick={handleDeleteConfirm}>Confirm</Button>
         </DialogActions>
       </Dialog>
 
@@ -259,8 +259,8 @@ const Vaccine = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button size='small' color='error' onClick={handleCloseUpdateDialog}>Cancel</Button>
-          <Button variant="outlined" size='small' onClick={handleUpdateConfirm}>Update</Button>
+          <Button size='large' sx={{ color: 'text.disabled' }} onClick={handleCloseUpdateDialog}>Cancel</Button>
+          <Button size='large' color="primary" variant='outlined' onClick={handleUpdateConfirm}>Update</Button>
         </DialogActions>
       </Dialog>
     </>

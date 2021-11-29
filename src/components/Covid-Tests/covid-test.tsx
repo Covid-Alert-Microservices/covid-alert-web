@@ -70,8 +70,8 @@ const CovidTest = (props: { covidTest: CovidTestData }) => {
           </CardContent>
           <CardActions>
             <Stack direction="row" spacing={2} sx={{ mx: 'auto' }}>
-              <Button variant='outlined' size='small' onClick={openUpdateDialog}>Edit</Button>
-              <Button size='small' color='error' onClick={openDeleteDialog}>Delete</Button>
+              <Button size='large' color="primary" onClick={openUpdateDialog}>Edit</Button>
+              <Button size='large' color="error" onClick={openDeleteDialog}>Delete</Button>
             </Stack>
           </CardActions>
         </Card>

@@ -1,6 +1,6 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { covidTestApi } from "../../store/api/covid-tests";
+import { vaccineApi } from "../../store/api/vaccine";
 
 interface IProps {
     open: boolean;
@@ -9,22 +9,24 @@ interface IProps {
 
 const initialState = {
     disease: "COVID-19",
-    testType: "",
-    testResult: "",
-    testDate: new Date().toLocaleDateString('fr-CA'),
-    certificationAuthorityIdentifier: "",
+    vaccine: "",
+    vaccineMedicinalProduct: "",
+    manufacturer: "",
+    doseNumber: 0,
+    doseNumberMax: 3,
+    vaccinationDate: new Date().toLocaleDateString('fr-CA'),
     memberState: "",
     certificateIssuer: "",
 }
 
-const CreateTest = ({ open, onClose }: IProps) => {
-    const [createTest] = covidTestApi.useCreateCovidTestMutation()
+const CreateVaccine = ({ open, onClose }: IProps) => {
+    const [createVaccine] = vaccineApi.useCreateVaccineMutation();
 
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const [formState, setFormState] = useState(initialState)
 
-    const isCreateButtonDisabled = !formState.disease || !formState.testType || !formState.testResult || !formState.testDate || !formState.certificationAuthorityIdentifier || !formState.memberState || !formState.certificateIssuer
+    const isCreateButtonDisabled = !formState.disease || !formState.vaccine || !formState.vaccineMedicinalProduct || !formState.manufacturer || formState.doseNumber < 0 || formState.doseNumberMax < 0 || formState.doseNumberMax < formState.doseNumber || !formState.vaccinationDate || !formState.memberState || !formState.certificateIssuer
 
     const onFieldUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormState({ ...formState, [event.target.id]: event.target.value });
@@ -32,7 +34,7 @@ const CreateTest = ({ open, onClose }: IProps) => {
 
     const handleCreateConfirm = () => {
         if (!isCreateButtonDisabled) {
-            createTest({ ...formState, testDate: new Date(formState.testDate).getTime(), testResult: formState.testResult.toUpperCase() })
+            createVaccine({ ...formState, vaccinationDate: new Date(formState.vaccinationDate).getTime() })
                 .then((res) => {
                     if ("error" in res) {
                         console.log(res.error)
@@ -66,25 +68,27 @@ const CreateTest = ({ open, onClose }: IProps) => {
                 aria-describedby="create-dialog-description"
             >
                 <DialogTitle id="create-dialog-title">
-                    New test
+                    New vaccine
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="create-dialog-description">
-                        Please enter your test informations.
+                        Please enter your vaccine informations.
                     </DialogContentText>
                     <Box component="form" sx={{ margin: 3, '& .MuiTextField-root': { m: 1, width: '100%', maxWidth: '25ch' } }}>
                         <TextField disabled id="disease" label="Disease" onChange={onFieldUpdate} value={formState.disease} />
-                        <TextField required id="testType" label="Test Type" onChange={onFieldUpdate} value={formState.testType} />
-                        <TextField required id="testResult" label="Test Result" onChange={onFieldUpdate} value={formState.testResult} />
-                        <TextField required id="testDate" label="Test Date" type="date" onChange={onFieldUpdate} value={formState.testDate} />
-                        <TextField required id="certificationAuthorityIdentifier" label="Certification Authority Identifier" onChange={onFieldUpdate} value={formState.certificationAuthorityIdentifier} />
+                        <TextField required id="vaccine" label="Vaccine" onChange={onFieldUpdate} value={formState.vaccine} />
+                        <TextField required id="vaccineMedicinalProduct" label="Vaccine Medicinal Product" onChange={onFieldUpdate} value={formState.vaccineMedicinalProduct} />
+                        <TextField required id="manufacturer" label="Manufacturer" onChange={onFieldUpdate} value={formState.manufacturer} />
+                        <TextField required id="doseNumber" label="Dose Number" type="number" onChange={onFieldUpdate} value={formState.doseNumber} />
+                        <TextField required id="doseNumberMax" label="Dose Number Max" type="number" onChange={onFieldUpdate} value={formState.doseNumberMax} />
+                        <TextField required id="vaccinationDate" label="Vaccination Date" type="date" onChange={onFieldUpdate} value={formState.vaccinationDate} />
                         <TextField required id="memberState" label="Member State" onChange={onFieldUpdate} value={formState.memberState} />
                         <TextField required id="certificateIssuer" label="Certificate Issuer" onChange={onFieldUpdate} value={formState.certificateIssuer} />
                     </Box>
                 </DialogContent>
                 <DialogActions>
                     <Button size='large' sx={{ color: 'text.disabled' }} onClick={onClose}>Cancel</Button>
-                    <Button size='large' color='primary' variant="outlined" onClick={handleCreateConfirm} disabled={isCreateButtonDisabled}>Create test</Button>
+                    <Button size='large' color='primary' variant="outlined" onClick={handleCreateConfirm} disabled={isCreateButtonDisabled}>Create vaccine</Button>
                 </DialogActions>
             </Dialog>
         </>
@@ -92,4 +96,4 @@ const CreateTest = ({ open, onClose }: IProps) => {
 }
 
 
-export default CreateTest;
+export default CreateVaccine;
